@@ -67,3 +67,15 @@ android {
         implementation(libs.androidx.fragment.ktx)
     }
 }
+
+afterEvaluate {
+    publishing {
+        publications.configureEach {
+            if (this is MavenPublication) {
+                groupId = project.group.toString()
+                artifactId = artifactId.replace(project.name, "yamvil")
+                version = project.version.toString()
+            }
+        }
+    }
+}
