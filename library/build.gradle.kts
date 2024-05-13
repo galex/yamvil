@@ -5,12 +5,12 @@ plugins {
 }
 
 group = "dev.galex"
-version = "0.0.1"
+version = "0.0.3"
 
 kotlin {
     androidTarget {
         compilations.all {
-            kotlinOptions {
+                kotlinOptions {
                 jvmTarget = "1.8"
             }
         }
@@ -42,7 +42,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.lifecyle.viewmodel.compose)
+            api(libs.lifecyle.viewmodel.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
