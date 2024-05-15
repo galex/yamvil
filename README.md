@@ -1,4 +1,4 @@
-# Yamvil - MVI Tbe Right Way
+# Yamvil - Empowering with MVI
 
 > ⚠️ This is a work in progress 
 
@@ -6,10 +6,10 @@
 
 This is a Library and Compiler Plugin to help you write Screens that follow the MVI Pattern on Android and Compose Multiplatform.
 
-- ✅ MVIViewModel as a base ViewModel class that requires an `UiState`, `UiEvent` and `UiAction` classes
+- ✅ [MVIViewModel](https://github.com/galex/yamvil/blob/main/runtime/src/commonMain/kotlin/dev/galex/yamvil/viewmodels/MVIViewModel.kt) as a base ViewModel class that requires an `UiState`, `UiEvent` and `UiAction` classes
 - ✅ Built on top of [ViewModel of Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-lifecycle.html#viewmodel-implementation)
-- ✅ Avoids [the trap mentioned by Google here](https://medium.com/androiddevelopers/viewmodel-one-off-event-antipatterns-16a1da869b95) by using `BaseUIState` that contains a `Consumable<UiAction>` for one-shot events
-- ✅ Supports Android Fragments via inheritance of MVIFragment
+- ✅ Avoids [the trap mentioned by Google](https://medium.com/androiddevelopers/viewmodel-one-off-event-antipatterns-16a1da869b95) by using `BaseUIState` for one-off events
+- ✅ Supports Android Fragments via inheritance of [MVIFragment](https://github.com/galex/yamvil/blob/main/runtime/src/androidMain/kotlin/dev/galex/yamvil/fragments/MVIFragment.kt)
 - ✅ Checks for correct implementation of @Composable at **Compile Time**
 - ✅ Autocompletes your IDE when writing a new Screen
 
@@ -49,4 +49,4 @@ dependencies {
 
 ## Contributing
 
-Run `./gradlew publishToMavenLocal` to publish all the artefacts locally
+Run `./gradlew publishToMavenLocal` to publish all the artefacts locally.
