@@ -1,10 +1,10 @@
-# Yamvil - Empowering with MVI
+# Yamvil - Writing MVI Screens made easy
 
 > ⚠️ This is a work in progress 
 
 ## Introduction
 
-This is a Library and Compiler Plugin to help you write Screens that follow the MVI Pattern on Android and Compose Multiplatform.
+Library and Compiler Plugin to help us write Screens that follow the MVI Pattern on Android and Compose Multiplatform.
 
 - ✅ [MVIViewModel](https://github.com/galex/yamvil/blob/main/runtime/src/commonMain/kotlin/dev/galex/yamvil/viewmodels/MVIViewModel.kt) as a base ViewModel class that requires an `UiState`, `UiEvent` and `UiAction` classes
 - ✅ Built on top of [ViewModel of Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-lifecycle.html#viewmodel-implementation)
