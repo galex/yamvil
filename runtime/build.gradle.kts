@@ -4,7 +4,7 @@ plugins {
     id("maven-publish")
 }
 
-group = "dev.galex"
+group = "dev.galex.yamvil"
 version = "0.0.3"
 
 kotlin {
@@ -66,14 +66,14 @@ android {
     }
 }
 
-afterEvaluate {
-    publishing {
-        publications.configureEach {
-            if (this is MavenPublication) {
-                groupId = project.group.toString()
-                artifactId = artifactId.replace(project.name, "yamvil")
-                version = project.version.toString()
-            }
-        }
-    }
-}
+//afterEvaluate {
+//    publishing {
+//        publications.configureEach {
+//            if (this is MavenPublication) {
+//                groupId = project.group.toString()
+//                artifactId = artifactId.replace(project.name, "runtime")
+//                version = project.version.toString()
+//            }
+//        }
+//    }
+//}

@@ -17,22 +17,22 @@ fun DashboardScreen(
     }
 
     when (uiState.state) {
-        is DashboardUiState.ContentState.Loading -> DashboardLoadingScreen()
-        is DashboardUiState.ContentState.Error -> DashboardErrorScreen()
+        is DashboardUiState.ContentState.Loading -> DashboardLoadingContent()
+        is DashboardUiState.ContentState.Error -> DashboardErrorContent()
         is DashboardUiState.ContentState.Content -> DashboardContent(uiState.state)
         else -> {}
     }
 }
 
 @Composable
-fun DashboardLoadingScreen(
+fun DashboardLoadingContent(
     modifier: Modifier = Modifier
 ) {
 
 }
 
 @Composable
-fun DashboardErrorScreen(
+fun DashboardErrorContent(
     modifier: Modifier = Modifier
 ) {
 

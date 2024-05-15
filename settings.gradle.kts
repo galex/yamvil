@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "yamvil"
-include(":library")
+include(":runtime")
