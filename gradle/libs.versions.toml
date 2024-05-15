@@ -1,11 +1,16 @@
 [versions]
 agp = "8.3.0"
-kotlin = "1.9.23"
+kotlin = "2.0.0-RC3"
 compose = "1.6.7"
 compose-material3 = "1.2.1"
 androidx-activityCompose = "1.9.0"
 androidx-fragment-ktx = "1.8.0-alpha02"
 lifecycle-viewmodel-compose = "2.8.0-beta02"
+junit = "4.12"
+junit-bom = "5.8.0"
+autoservice = "1.0.1"
+kotlin-compile-testing = "1.4.9"
+gson = "2.9.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -18,7 +23,26 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
 
+kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler", version.ref = "kotlin" }
+kotlin-script-runtime = { module = "org.jetbrains.kotlin:kotlin-script-runtime", version.ref = "kotlin" }
+kotlin-annotations-jvm = { module = "org.jetbrains.kotlin:kotlin-annotations-jvm", version.ref = "kotlin" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-compiler-internal-test-framework = { module = "org.jetbrains.kotlin:kotlin-compiler-internal-test-framework", version.ref = "kotlin" }
+junit = { module = "junit:junit", version.ref = "junit" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit-bom" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-bom" }
+junit-jupiter-platform-commons = { module = "org.junit.platform:junit-platform-commons" }
+junit-jupiter-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+junit-jupiter-platform-runner = { module = "org.junit.platform:junit-platform-runner" }
+junit-jupiter-platform-suite-api = { module = "org.junit.platform:junit-platform-suite-api" }
+autoservice = { module = "com.google.auto.service:auto-service", version.ref = "autoservice" }
+autoservice-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoservice" }
+kotlin-compile-testing = { module = "com.github.tschuchortdev:kotlin-compile-testing", version.ref = "kotlin-compile-testing" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+
+
 [plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

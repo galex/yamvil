@@ -4,8 +4,8 @@ plugins {
     id("maven-publish")
 }
 
-group = "dev.galex.yamvil"
-version = "0.0.3"
+//group = "dev.galex.yamvil"
+//version = "0.0.3"
 
 kotlin {
     androidTarget {
