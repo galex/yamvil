@@ -1,5 +1,7 @@
 # Yamvil - Writing MVI Screens Made Easy
 
+[![codecov](https://codecov.io/github/galex/yamvil/branch/main/graph/badge.svg?token=ML8EN8PYP0)](https://codecov.io/github/galex/yamvil)
+
 ## ⚠️ Work In Progress ⚠️
 
 The runtime library is usable and I hope you'll bring feedback!
