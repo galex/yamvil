@@ -13,7 +13,7 @@ kotlin {
         compilations.all {
             @Suppress("DEPRECATION")
             kotlinOptions {
-                jvmTarget = "21"
+                jvmTarget = "1.8"
             }
         }
         publishLibraryVariants("release", "debug")
@@ -59,8 +59,8 @@ android {
         minSdk = 24
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     @Suppress("UnstableApiUsage")

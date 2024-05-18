@@ -1,10 +1,10 @@
 package dev.galex.yamvil.models.base
 
 /**
- * Represents a UI state that can be consumed by the UI, with an action that can be consumed only once.
+ * Interface for classes that can be acted upon for one-off actions.
  * @param Action the type of the action
  */
-interface BaseUiState<Action> {
+interface Actionable<Action> {
     val action: Consumable<Action>?
 
     /**

@@ -3,11 +3,8 @@ package dev.galex.yamvil.fragments.base
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
-import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import dev.galex.yamvil.extensions.observeStateFlow
-import dev.galex.yamvil.models.base.BaseUiState
-import dev.galex.yamvil.viewmodels.MVIViewModel
 
 /**
  * Base class for Fragments that use MVI architecture.
@@ -15,12 +12,12 @@ import dev.galex.yamvil.viewmodels.MVIViewModel
  * @param Event The Event class that the ViewModel uses.
  * @param Action The Action class that the ViewModel uses.
  */
-abstract class MVIFragment<UiState : BaseUiState<*>, Event, Action>(
+abstract class MVIFragment<UiState, Event, Action>(
     @LayoutRes contentLayoutId: Int = 0,
 ) : Fragment(contentLayoutId), MVIInterface<UiState, Event, Action> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeStateFlow(viewModel.uiState, ::observeUiState)
+        observeStateFlow(this.viewModel.uiState, ::observeUiState)
     }
 }

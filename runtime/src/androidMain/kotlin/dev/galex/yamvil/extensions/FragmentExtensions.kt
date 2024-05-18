@@ -3,7 +3,6 @@ package dev.galex.yamvil.extensions
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import dev.galex.yamvil.models.base.BaseUiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -12,7 +11,7 @@ import kotlinx.coroutines.launch
  * @param stateFlow The state flow to observe.
  * @param observeUiState The function to call when the state changes.
  */
-fun <UiState : BaseUiState<*>> Fragment.observeStateFlow(
+fun <UiState> Fragment.observeStateFlow(
     stateFlow: Flow<UiState>,
     observeUiState: (UiState) -> Unit,
 ) {
