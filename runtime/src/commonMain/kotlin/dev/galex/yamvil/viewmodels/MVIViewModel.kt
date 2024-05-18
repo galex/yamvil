@@ -2,7 +2,7 @@ package dev.galex.yamvil.viewmodels
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import dev.galex.yamvil.models.BaseUiState
+import dev.galex.yamvil.models.base.BaseUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

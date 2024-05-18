@@ -1,6 +1,8 @@
+import dev.galex.yamvil.dsl.YamvilLevel
+
 plugins {
     kotlin("jvm") version "2.0.0-RC3"
-    id("dev.galex.yamvil") version "0.0.2"
+    id("dev.galex.yamvil") version "0.0.1"
 }
 
 group = "dev.galex.yamvil.sample.jvm"
@@ -20,4 +22,8 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(21)
+}
+
+yamvil {
+    level = YamvilLevel.Warning
 }

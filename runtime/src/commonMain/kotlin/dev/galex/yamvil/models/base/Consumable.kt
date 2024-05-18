@@ -1,4 +1,4 @@
-package dev.galex.yamvil.models
+package dev.galex.yamvil.models.base
 
 class Consumable<out T>(private val element: T) {
 
