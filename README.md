@@ -4,7 +4,8 @@
 [![codecov](https://codecov.io/github/galex/yamvil/branch/main/graph/badge.svg?token=ML8EN8PYP0)](https://codecov.io/github/galex/yamvil)
 
 Yamvil is a library and a compiler plugin to help you write MVI Screens in the easiest way possible on Android and Compose Multiplatform.
-The runtime library enforces the MVI pattern using Generics on ViewModels and Fragments, and the compiler plugin checks for the correct implementation of the MVI pattern in your @Composable functions.
+
+The runtime library helps enforcing the MVI pattern using Generics on ViewModels and Fragments, and the compiler plugin checks for the correct implementation of the MVI pattern in your @Composable functions.
 
 ## Introduction
 
