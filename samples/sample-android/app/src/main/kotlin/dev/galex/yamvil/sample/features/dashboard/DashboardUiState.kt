@@ -1,8 +1,7 @@
 package dev.galex.yamvil.sample.features.dashboard
 
-import dev.galex.yamvil.models.BaseUiState
-import dev.galex.yamvil.models.Consumable
-import dev.galex.yamvil.sample.features.dashboard.DashboardUiAction
+import dev.galex.yamvil.models.base.BaseUiState
+import dev.galex.yamvil.models.base.Consumable
 
 
 data class DashboardUiState(

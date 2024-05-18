@@ -71,7 +71,7 @@ android {
     }
 
     dependencies {
-        implementation(libs.androidx.fragment.ktx)
+        api(libs.androidx.fragment.ktx)
         testImplementation(libs.robolectric)
         testImplementation(libs.truth)
         testDebugImplementation(libs.androidx.fragment.testing)
