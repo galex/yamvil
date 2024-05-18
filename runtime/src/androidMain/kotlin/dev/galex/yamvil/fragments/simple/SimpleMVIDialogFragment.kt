@@ -13,4 +13,6 @@ import dev.galex.yamvil.viewmodels.SimpleMVIViewModel
 class SimpleMVIDialogFragment: MVIDialogFragment<SimpleUiState, SimpleUiEvent, SimpleUiAction>() {
 
     override val viewModel: SimpleMVIViewModel by viewModels()
+
+    override fun observeUiState(state: SimpleUiState) { /* NO-OP */ }
 }

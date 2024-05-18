@@ -13,6 +13,7 @@ kotlin-compile-testing = "1.4.9"
 gson = "2.10.1"
 robolectric = "4.12"
 truth = "1.4.2"
+kover = "0.8.0"
 
 
 
@@ -57,3 +58,5 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+

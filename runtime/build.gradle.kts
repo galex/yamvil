@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kover)
     id("maven-publish")
 }
 
@@ -74,6 +75,20 @@ android {
         testImplementation(libs.robolectric)
         testImplementation(libs.truth)
         testDebugImplementation(libs.androidx.fragment.testing)
+    }
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                classes(
+                    "dev.galex.yamvil.fragments.simple.*",
+                    "dev.galex.yamvil.models.simple.*",
+                    "dev.galex.yamvil.viewmodels.SimpleMVIViewModel",
+                )
+            }
+        }
     }
 }
 

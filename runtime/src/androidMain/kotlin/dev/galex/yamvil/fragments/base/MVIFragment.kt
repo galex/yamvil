@@ -15,22 +15,12 @@ import dev.galex.yamvil.viewmodels.MVIViewModel
  * @param Event The Event class that the ViewModel uses.
  * @param Action The Action class that the ViewModel uses.
  */
-abstract class MVIFragment<UiState: BaseUiState<*>, Event, Action>(
+abstract class MVIFragment<UiState : BaseUiState<*>, Event, Action>(
     @LayoutRes contentLayoutId: Int = 0,
-): Fragment(contentLayoutId) {
-
-    @VisibleForTesting
-    abstract val viewModel: MVIViewModel<UiState, Event>
+) : Fragment(contentLayoutId), MVIInterface<UiState, Event, Action> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeStateFlow(viewModel.uiState, ::observeUiState, ::consumeAction)
+        observeStateFlow(viewModel.uiState, ::observeUiState)
     }
-
-    @VisibleForTesting
-    fun Event.send() = viewModel.handleEvent(this)
-
-    protected open fun observeUiState(state: UiState) {}
-
-    protected open fun consumeAction(action: Action) {}
 }

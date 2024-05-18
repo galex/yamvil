@@ -10,8 +10,6 @@ fun <UiAction, UiState : BaseUiState<UiAction>> LaunchedActionEffect(
     block: (UiAction) -> Unit
 ) {
     LaunchedEffect(uiState.action) {
-        uiState.action?.consume()?.let { action: UiAction ->
-            block(action)
-        }
+        uiState.onAction(block)
     }
 }
