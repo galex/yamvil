@@ -1,15 +1,10 @@
-# Yamvil - Writing MVI Screens Made Easy
+# Yamvil
 
 [![CI](https://github.com/galex/yamvil/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/galex/yamvil/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/github/galex/yamvil/branch/main/graph/badge.svg?token=ML8EN8PYP0)](https://codecov.io/github/galex/yamvil)
 
-## ⚠️ Work In Progress ⚠️
-
-The runtime library is usable and I hope you'll bring feedback!
-
-The Compiler Plugin is usable by the compiler itself but warnings and errors cannot be seen within the IDE, yet
-- K2 IDE Plugin is in Alpha but should show warnings/errors
-- Android Studio is bundled with an older version of the Compose Compiler Plugin, [more info here](https://issuetracker.google.com/issues/341233001)
+Yamvil is a library and a compiler plugin to help you write MVI Screens in the easiest way possible on Android and Compose Multiplatform.
+The runtime library enforces the MVI pattern using Generics on ViewModels and Fragments, and the compiler plugin checks for the correct implementation of the MVI pattern in your @Composable functions.
 
 ## Introduction
 
