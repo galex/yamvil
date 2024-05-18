@@ -1,5 +1,6 @@
 package dev.galex.yamvil.fragments.simple
 
+import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.viewModels
 import dev.galex.yamvil.fragments.base.MVIFragment
 import dev.galex.yamvil.models.simple.SimpleUiAction

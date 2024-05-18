@@ -4,18 +4,24 @@ kotlin = "2.0.0-RC3"
 compose = "1.6.7"
 compose-material3 = "1.2.1"
 androidx-activityCompose = "1.9.0"
-androidx-fragment-ktx = "1.8.0-alpha02"
+androidx-fragment-ktx = "1.8.0-beta01"
 lifecycle-viewmodel-compose = "2.8.0-beta02"
-junit = "4.12"
-junit-bom = "5.8.0"
+junit = "4.13.2"
+junit-bom = "5.10.1"
 autoservice = "1.0.1"
 kotlin-compile-testing = "1.4.9"
-gson = "2.9.1"
+gson = "2.10.1"
+robolectric = "4.12"
+truth = "1.4.2"
+coroutines = "1.6.0"
+
+
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment-ktx" }
+androidx-fragment-testing = { module = "androidx.fragment:fragment-testing", version.ref = "androidx-fragment-ktx" }
 lifecyle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle-viewmodel-compose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
@@ -39,6 +45,11 @@ autoservice = { module = "com.google.auto.service:auto-service", version.ref = "
 autoservice-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoservice" }
 kotlin-compile-testing = { module = "com.github.tschuchortdev:kotlin-compile-testing", version.ref = "kotlin-compile-testing" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+
+
 
 
 [plugins]

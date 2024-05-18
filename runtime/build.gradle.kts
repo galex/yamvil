@@ -10,7 +10,8 @@ plugins {
 kotlin {
     androidTarget {
         compilations.all {
-                kotlinOptions {
+            @Suppress("DEPRECATION")
+            kotlinOptions {
                 jvmTarget = "1.8"
             }
         }
@@ -61,8 +62,19 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    @Suppress("UnstableApiUsage")
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     dependencies {
         implementation(libs.androidx.fragment.ktx)
+        testImplementation(libs.robolectric)
+        testImplementation(libs.truth)
+        testImplementation(libs.coroutines.test)
+        testDebugImplementation(libs.androidx.fragment.testing)
     }
 }
 

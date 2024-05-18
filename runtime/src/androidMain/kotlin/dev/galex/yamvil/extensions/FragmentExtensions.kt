@@ -1,3 +1,5 @@
+
+
 package dev.galex.yamvil.extensions
 
 import androidx.fragment.app.Fragment
@@ -7,6 +9,7 @@ import dev.galex.yamvil.models.base.BaseUiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
+@Suppress("UNCHECKED_CAST")
 fun <UiState: BaseUiState<*>, Action> Fragment.observeStateFlow(
     stateFlow: Flow<UiState>,
     observeUiState: (UiState) -> Unit,
