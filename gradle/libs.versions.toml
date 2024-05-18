@@ -13,7 +13,6 @@ kotlin-compile-testing = "1.4.9"
 gson = "2.10.1"
 robolectric = "4.12"
 truth = "1.4.2"
-coroutines = "1.6.0"
 
 
 
@@ -47,7 +46,6 @@ kotlin-compile-testing = { module = "com.github.tschuchortdev:kotlin-compile-tes
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 
 
 

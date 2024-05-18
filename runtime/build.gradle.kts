@@ -73,7 +73,6 @@ android {
         implementation(libs.androidx.fragment.ktx)
         testImplementation(libs.robolectric)
         testImplementation(libs.truth)
-        testImplementation(libs.coroutines.test)
         testDebugImplementation(libs.androidx.fragment.testing)
     }
 }

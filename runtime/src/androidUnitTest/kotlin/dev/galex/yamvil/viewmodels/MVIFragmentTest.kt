@@ -11,7 +11,6 @@ import dev.galex.yamvil.fragments.base.MVIFragment
 import dev.galex.yamvil.models.base.BaseUiState
 import dev.galex.yamvil.models.base.Consumable
 import dev.galex.yamvil.viewmodels.MVIFragmentTest.TestedUiState
-import kotlinx.coroutines.test.runTest
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import kotlin.test.Test
@@ -71,7 +70,7 @@ class MVIFragmentTest {
     }
 
     @Test
-    fun `Checking Initial State`() = runTest {
+    fun `Checking Initial State`() {
         val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
@@ -80,7 +79,7 @@ class MVIFragmentTest {
     }
 
     @Test
-    fun `Triggering FirstEvent via handleEvent() - UiState is updated`() = runTest {
+    fun `Triggering FirstEvent via handleEvent() - UiState is updated`() {
         val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
@@ -93,7 +92,7 @@ class MVIFragmentTest {
     }
 
     @Test
-    fun `Triggering FirstEvent via send() - UiState is updated`() = runTest {
+    fun `Triggering FirstEvent via send() - UiState is updated`() {
         val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             fragment.apply {
@@ -108,7 +107,7 @@ class MVIFragmentTest {
     }
 
     @Test
-    fun `Triggering FirstEvent and Second - UiState is updated`() = runTest {
+    fun `Triggering FirstEvent and Second - UiState is updated`() {
         val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
@@ -125,7 +124,7 @@ class MVIFragmentTest {
     }
 
     @Test
-    fun `Triggering FirstEvent and Second - UiState is updated - Recreation`() = runTest {
+    fun `Triggering FirstEvent and Second - UiState is updated - Recreation`() {
         val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
@@ -147,6 +146,23 @@ class MVIFragmentTest {
                 action = null,
                 firstEventTriggered = true,
                 secondEventTriggered = true,
+            ))
+        }
+    }
+
+    @Test
+    fun `Triggering ThirdEvent - UiState is updated with an Action`() {
+        val scenario = launchFragmentInContainer<TestedFragment>()
+        scenario.onFragment { fragment ->
+            assertThat(fragment.stateCounter).isEqualTo(1)
+            assertThat(fragment.actionCounter).isEqualTo(0)
+            fragment.viewModel.handleEvent(TestedUiEvent.ThirdEvent)
+            assertThat(fragment.stateCounter).isEqualTo(2)
+            assertThat(fragment.actionCounter).isEqualTo(1)
+            assertThat(fragment.lastState).isEqualTo(TestedUiState(
+                action = Consumable(TestedUiAction.FirstAction),
+                firstEventTriggered = false,
+                secondEventTriggered = false,
             ))
         }
     }
