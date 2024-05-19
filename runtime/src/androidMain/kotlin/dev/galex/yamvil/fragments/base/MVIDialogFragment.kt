@@ -3,7 +3,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
-import dev.galex.yamvil.runtime.common.extensions.observeStateFlow
+import dev.galex.yamvil.extensions.observeStateFlow
 
 /**
  * Base class for DialogFragments that use MVI architecture.

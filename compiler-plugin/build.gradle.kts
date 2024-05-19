@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     kotlin("kapt")
     id("com.github.gmazzo.buildconfig")
-    `maven-publish`
+    //`maven-publish`
 }
 
 dependencies {
@@ -43,17 +43,17 @@ buildConfig {
     buildConfigField("String", "KOTLIN_PLUGIN_ID", "\"${rootProject.extra["kotlin_plugin_id"]}\"")
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("compilerPlugin") {
-            groupId = project.group.toString()
-            artifactId = project.name
-            version = project.version.toString()
-            from(components["java"])
-            artifact(tasks.kotlinSourcesJar)
-        }
-    }
-}
+//publishing {
+//    publications {
+//        create<MavenPublication>("compilerPlugin") {
+//            groupId = project.group.toString()
+//            artifactId = project.name
+//            version = project.version.toString()
+//            from(components["java"])
+//            artifact(tasks.kotlinSourcesJar)
+//        }
+//    }
+//}
 
 sourceSets {
     test {

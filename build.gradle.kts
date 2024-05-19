@@ -1,12 +1,15 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 buildscript {
     extra["kotlin_plugin_id"] = "dev.galex.yamvil"
 }
 
 plugins {
-    alias(libs.plugins.androidLibrary).apply(false)
-    alias(libs.plugins.kotlinMultiplatform).apply(false)
+    alias(libs.plugins.androidLibrary) apply false
+    alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.compose.compiler) apply false
-    alias(libs.plugins.kover).apply(false)
+    alias(libs.plugins.kover) apply false
+    alias(libs.plugins.vanniktech.maven.publish) apply false
 
     alias(libs.plugins.kotlin.jvm) apply false
     id("org.jetbrains.dokka") version "1.7.0" apply false

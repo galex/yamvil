@@ -2,7 +2,7 @@ plugins {
   id("java-gradle-plugin")
   kotlin("jvm")
   id("com.github.gmazzo.buildconfig")
-  `maven-publish`
+  //`maven-publish`
 }
 
 dependencies {
@@ -41,14 +41,14 @@ gradlePlugin {
   }
 }
 
-publishing {
-  publications {
-    create<MavenPublication>("gradlePlugin") {
-      groupId = project.group.toString()
-      artifactId = project.name
-      version = project.version.toString()
-      from(components["java"])
-      artifact(tasks.kotlinSourcesJar)
-    }
-  }
-}
+//publishing {
+//  publications {
+//    create<MavenPublication>("gradlePlugin") {
+//      groupId = project.group.toString()
+//      artifactId = project.name
+//      version = project.version.toString()
+//      from(components["java"])
+//      artifact(tasks.kotlinSourcesJar)
+//    }
+//  }
+//}
