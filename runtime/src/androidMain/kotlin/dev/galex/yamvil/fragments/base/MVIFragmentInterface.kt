@@ -3,13 +3,13 @@ package dev.galex.yamvil.fragments.base
 import androidx.annotation.VisibleForTesting
 import dev.galex.yamvil.viewmodels.MVIViewModel
 
-interface MVIInterface<UiState, Event, Action> {
+interface MVIFragmentInterface<UiState, UiEvent> {
 
     @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
-    val viewModel: MVIViewModel<UiState, Event>
+    val viewModel: MVIViewModel<UiState, UiEvent>
 
     @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
-    fun Event.send() = viewModel.handleEvent(this)
+    fun UiEvent.send() = viewModel.handleEvent(this)
 
-    fun observeUiState(state: UiState)
+    fun observeUiState(s: UiState)
 }

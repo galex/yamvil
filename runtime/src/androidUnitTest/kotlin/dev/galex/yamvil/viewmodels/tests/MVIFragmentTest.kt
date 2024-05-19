@@ -21,7 +21,7 @@ import kotlin.test.Test
 @RunWith(RobolectricTestRunner::class)
 class MVIFragmentTest {
 
-    class TestedFragment: MVIFragment<TestedUiState, TestedUiEvent, TestedUiAction>() {
+    class TestedFragment: MVIFragment<TestedUiState, TestedUiEvent>() {
 
         var stateCounter = 0
         var lastState: TestedUiState? = null

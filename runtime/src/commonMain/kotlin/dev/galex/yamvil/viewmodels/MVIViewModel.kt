@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-abstract class MVIViewModel<UiState, Event>(
+abstract class MVIViewModel<UiState, UiEvent>(
     protected val savedStateHandle: SavedStateHandle? = null,
 ) : ViewModel() {
 
@@ -18,5 +18,5 @@ abstract class MVIViewModel<UiState, Event>(
     }
 
     abstract fun initializeUiState(): UiState
-    abstract fun handleEvent(event: Event)
+    abstract fun handleEvent(event: UiEvent)
 }

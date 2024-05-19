@@ -9,12 +9,11 @@ import dev.galex.yamvil.extensions.observeStateFlow
 /**
  * Base class for Fragments that use MVI architecture.
  * @param UiState The UiState class that the ViewModel uses.
- * @param Event The Event class that the ViewModel uses.
- * @param Action The Action class that the ViewModel uses.
+ * @param UiEvent The Event class that the ViewModel uses.
  */
-abstract class MVIFragment<UiState, Event, Action>(
+abstract class MVIFragment<UiState, UiEvent>(
     @LayoutRes contentLayoutId: Int = 0,
-) : Fragment(contentLayoutId), MVIInterface<UiState, Event, Action> {
+) : Fragment(contentLayoutId), MVIFragmentInterface<UiState, UiEvent> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

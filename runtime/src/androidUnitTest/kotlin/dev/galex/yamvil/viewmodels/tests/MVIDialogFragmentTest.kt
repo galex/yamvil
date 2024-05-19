@@ -21,7 +21,7 @@ import kotlin.test.Test
 @RunWith(RobolectricTestRunner::class)
 class MVIDialogFragmentTest {
 
-    class TestedDialogFragment: MVIDialogFragment<TestedUiState, TestedUiEvent, TestedUiAction>() {
+    class TestedDialogFragment: MVIDialogFragment<TestedUiState, TestedUiEvent>() {
 
         var stateCounter = 0
         var lastState: TestedUiState? = null

@@ -3,17 +3,17 @@ package dev.galex.yamvil.sample.features.dashboard
 import androidx.fragment.app.viewModels
 import dev.galex.yamvil.fragments.base.MVIFragment
 
-class DashboardFragment: MVIFragment<DashboardUiState, DashboardUiEvent, DashboardUiAction>() {
+class DashboardFragment: MVIFragment<DashboardUiState, DashboardUiEvent>() {
 
     override val viewModel: DashboardViewModel by viewModels()
-    override fun observeUiState(state: DashboardUiState) {
-        when(state.state) {
+    override fun observeUiState(uiState: DashboardUiState) {
+        when(uiState.state) {
             DashboardUiState.ContentState.Loading -> onLoading()
-            is DashboardUiState.ContentState.Content -> onContent(state.state)
+            is DashboardUiState.ContentState.Content -> onContent(uiState.state)
             DashboardUiState.ContentState.Error -> onError()
         }
 
-        state.onAction { action ->
+        uiState.onAction { action ->
             when(action) {
                 DashboardUiAction.NavigateToNext -> navigateToNext()
             }

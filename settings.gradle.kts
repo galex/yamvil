@@ -20,8 +20,12 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "yamvil"
-// The MVI Library
+// The MVI Runtime Library
 include(":runtime")
+// The MVI Runtime Library with a Channel for UI Actions
+include(":runtime-channel")
+// Common code for both runtime libraries
+include(":runtime-common")
 // The Compiler Plugin
 include(":compiler-plugin")
 include(":compiler-gradle-plugin")

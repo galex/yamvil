@@ -45,6 +45,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(libs.lifecyle.viewmodel.compose)
+            api(projects.runtimeCommon)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
