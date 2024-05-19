@@ -23,4 +23,4 @@ jobs:
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./runtime/build/reports/kover/reportDebug.xml
+          files: ./runtime/build/reports/kover/reportDebug.xml,./runtime-channel/build/reports/kover/reportDebug.xml
