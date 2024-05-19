@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.fragment.app.viewModels
 import com.google.common.truth.Truth.assertThat
-import dev.galex.yamvil.fragments.base.MVIFragment
-import dev.galex.yamvil.models.base.Consumable
+import dev.galex.yamvil.fragments.base.MVIChannelDialogFragment
 import dev.galex.yamvil.viewmodels.models.TestedUiAction
 import dev.galex.yamvil.viewmodels.models.TestedUiEvent
 import dev.galex.yamvil.viewmodels.models.TestedUiState
@@ -19,13 +18,14 @@ import kotlin.apply
 import kotlin.test.Test
 
 @RunWith(RobolectricTestRunner::class)
-class MVIFragmentTest {
+class MVIChannelDialogFragmentTest {
 
-    class TestedFragment: MVIFragment<TestedUiState, TestedUiEvent>() {
+    class TestedFragment: MVIChannelDialogFragment<TestedUiState, TestedUiEvent, TestedUiAction>() {
 
         var stateCounter = 0
         var lastState: TestedUiState? = null
         var actionCounter = 0
+        var lastAction: TestedUiAction? = null
 
         override val viewModel: TestedViewModel by viewModels()
 
@@ -36,10 +36,11 @@ class MVIFragmentTest {
         override fun observeUiState(state: TestedUiState) {
             stateCounter++
             lastState = state
+        }
 
-            state.onAction {
-                actionCounter++
-            }
+        override fun consumeAction(action: TestedUiAction) {
+            actionCounter++
+            lastAction = action
         }
     }
 
@@ -49,6 +50,7 @@ class MVIFragmentTest {
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.lastState).isEqualTo(TestedUiState())
+            assertThat(fragment.lastAction).isNull()
         }
     }
 
@@ -64,6 +66,7 @@ class MVIFragmentTest {
                     firstEventTriggered = true
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
     }
 
@@ -76,11 +79,11 @@ class MVIFragmentTest {
             }
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = null,
                     firstEventTriggered = true,
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
     }
 
@@ -95,11 +98,11 @@ class MVIFragmentTest {
             assertThat(fragment.stateCounter).isEqualTo(3)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = null,
                     firstEventTriggered = true,
                     secondEventTriggered = true,
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
     }
 
@@ -114,11 +117,11 @@ class MVIFragmentTest {
             assertThat(fragment.stateCounter).isEqualTo(3)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = null,
                     firstEventTriggered = true,
                     secondEventTriggered = true,
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
 
         scenario.recreate()
@@ -127,11 +130,11 @@ class MVIFragmentTest {
             assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = null,
                     firstEventTriggered = true,
                     secondEventTriggered = true,
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
     }
 
@@ -142,15 +145,15 @@ class MVIFragmentTest {
             assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.actionCounter).isEqualTo(0)
             fragment.viewModel.handleEvent(TestedUiEvent.ThirdEvent)
-            assertThat(fragment.stateCounter).isEqualTo(2)
+            assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.actionCounter).isEqualTo(1)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = Consumable(TestedUiAction.FirstAction),
                     firstEventTriggered = false,
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastAction).isEqualTo(TestedUiAction.FirstAction)
         }
     }
 
@@ -161,15 +164,15 @@ class MVIFragmentTest {
             assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.actionCounter).isEqualTo(0)
             fragment.viewModel.handleEvent(TestedUiEvent.ThirdEvent)
-            assertThat(fragment.stateCounter).isEqualTo(2)
+            assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.actionCounter).isEqualTo(1)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = Consumable(TestedUiAction.FirstAction),
                     firstEventTriggered = false,
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastAction).isEqualTo(TestedUiAction.FirstAction)
         }
 
         scenario.recreate()
@@ -179,11 +182,11 @@ class MVIFragmentTest {
             assertThat(fragment.actionCounter).isEqualTo(0)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = Consumable(TestedUiAction.FirstAction),
                     firstEventTriggered = false,
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
     }
 }

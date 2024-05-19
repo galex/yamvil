@@ -1,5 +1,6 @@
 package dev.galex.yamvil.sample.features.dashboard
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import dev.galex.yamvil.compose.LaunchedActionEffect
@@ -21,6 +22,8 @@ fun DashboardScreen(
         is DashboardUiState.ContentState.Error -> DashboardErrorContent()
         is DashboardUiState.ContentState.Content -> DashboardContent(uiState.state)
     }
+
+    Text(text = "DashboardScreen")
 }
 
 @Composable

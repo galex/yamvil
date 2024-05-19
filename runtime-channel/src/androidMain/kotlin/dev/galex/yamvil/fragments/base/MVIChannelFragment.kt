@@ -5,7 +5,7 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import dev.galex.yamvil.extensions.observeActionFlow
-import dev.galex.yamvil.extensions.observeStateFlow
+import dev.galex.yamvil.runtime.common.extensions.observeStateFlow
 
 /**
  * Base class for Fragments that use MVI architecture.

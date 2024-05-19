@@ -86,7 +86,7 @@ kover {
                 classes(
                     "dev.galex.yamvil.fragments.simple.*",
                     "dev.galex.yamvil.models.simple.*",
-                    "dev.galex.yamvil.viewmodels.SimpleMVIViewModel",
+                    "dev.galex.yamvil.viewmodels.SimpleMVIChannelViewModel",
                 )
             }
         }

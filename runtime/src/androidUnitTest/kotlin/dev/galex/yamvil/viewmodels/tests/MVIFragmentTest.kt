@@ -151,6 +151,7 @@ class MVIFragmentTest {
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastState?.action?.consumed).isTrue()
         }
     }
 
@@ -170,6 +171,7 @@ class MVIFragmentTest {
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastState?.action?.consumed).isTrue()
         }
 
         scenario.recreate()
@@ -184,6 +186,7 @@ class MVIFragmentTest {
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastState?.action?.consumed).isTrue()
         }
     }
 }

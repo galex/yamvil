@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kover)
     id("maven-publish")
 }
@@ -76,6 +77,9 @@ android {
         testImplementation(libs.robolectric)
         testImplementation(libs.truth)
         testDebugImplementation(libs.androidx.fragment.testing)
+        testImplementation(libs.compose.ui.test.junit)
+        debugImplementation(libs.compose.ui.test.manifest)
+        testImplementation(libs.compose.material3)
     }
 }
 

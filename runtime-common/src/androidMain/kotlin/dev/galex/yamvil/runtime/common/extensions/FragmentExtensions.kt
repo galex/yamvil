@@ -1,4 +1,4 @@
-package dev.galex.yamvil.extensions
+package dev.galex.yamvil.runtime.common.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope

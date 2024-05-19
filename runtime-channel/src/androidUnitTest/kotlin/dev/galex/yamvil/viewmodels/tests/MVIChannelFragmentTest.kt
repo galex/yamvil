@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.fragment.app.viewModels
 import com.google.common.truth.Truth.assertThat
-import dev.galex.yamvil.fragments.base.MVIDialogFragment
-import dev.galex.yamvil.models.base.Consumable
+import dev.galex.yamvil.fragments.base.MVIChannelFragment
 import dev.galex.yamvil.viewmodels.models.TestedUiAction
 import dev.galex.yamvil.viewmodels.models.TestedUiEvent
 import dev.galex.yamvil.viewmodels.models.TestedUiState
@@ -19,13 +18,14 @@ import kotlin.apply
 import kotlin.test.Test
 
 @RunWith(RobolectricTestRunner::class)
-class MVIDialogFragmentTest {
+class MVIChannelFragmentTest {
 
-    class TestedDialogFragment: MVIDialogFragment<TestedUiState, TestedUiEvent>() {
+    class TestedFragment: MVIChannelFragment<TestedUiState, TestedUiEvent, TestedUiAction>() {
 
         var stateCounter = 0
         var lastState: TestedUiState? = null
         var actionCounter = 0
+        var lastAction: TestedUiAction? = null
 
         override val viewModel: TestedViewModel by viewModels()
 
@@ -36,25 +36,27 @@ class MVIDialogFragmentTest {
         override fun observeUiState(state: TestedUiState) {
             stateCounter++
             lastState = state
+        }
 
-            state.onAction {
-                actionCounter++
-            }
+        override fun consumeAction(action: TestedUiAction) {
+            actionCounter++
+            lastAction = action
         }
     }
 
     @Test
     fun `Checking Initial State`() {
-        val scenario = launchFragmentInContainer<TestedDialogFragment>()
+        val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.lastState).isEqualTo(TestedUiState())
+            assertThat(fragment.lastAction).isNull()
         }
     }
 
     @Test
     fun `Triggering FirstEvent via handleEvent() - UiState is updated`() {
-        val scenario = launchFragmentInContainer<TestedDialogFragment>()
+        val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
             fragment.viewModel.handleEvent(TestedUiEvent.FirstEvent)
@@ -64,29 +66,30 @@ class MVIDialogFragmentTest {
                     firstEventTriggered = true
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
     }
 
     @Test
     fun `Triggering FirstEvent via send() - UiState is updated`() {
-        val scenario = launchFragmentInContainer<TestedDialogFragment>()
+        val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             fragment.apply {
                 TestedUiEvent.FirstEvent.send()
             }
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = null,
                     firstEventTriggered = true,
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
     }
 
     @Test
     fun `Triggering FirstEvent and Second - UiState is updated`() {
-        val scenario = launchFragmentInContainer<TestedDialogFragment>()
+        val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
             fragment.viewModel.handleEvent(TestedUiEvent.FirstEvent)
@@ -95,17 +98,17 @@ class MVIDialogFragmentTest {
             assertThat(fragment.stateCounter).isEqualTo(3)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = null,
                     firstEventTriggered = true,
                     secondEventTriggered = true,
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
     }
 
     @Test
     fun `Triggering FirstEvent and Second - UiState is updated - Recreation`() {
-        val scenario = launchFragmentInContainer<TestedDialogFragment>()
+        val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
             fragment.viewModel.handleEvent(TestedUiEvent.FirstEvent)
@@ -114,11 +117,11 @@ class MVIDialogFragmentTest {
             assertThat(fragment.stateCounter).isEqualTo(3)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = null,
                     firstEventTriggered = true,
                     secondEventTriggered = true,
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
 
         scenario.recreate()
@@ -127,49 +130,49 @@ class MVIDialogFragmentTest {
             assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = null,
                     firstEventTriggered = true,
                     secondEventTriggered = true,
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
     }
 
     @Test
     fun `Triggering ThirdEvent - UiState is updated with an Action`() {
-        val scenario = launchFragmentInContainer<TestedDialogFragment>()
+        val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.actionCounter).isEqualTo(0)
             fragment.viewModel.handleEvent(TestedUiEvent.ThirdEvent)
-            assertThat(fragment.stateCounter).isEqualTo(2)
+            assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.actionCounter).isEqualTo(1)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = Consumable(TestedUiAction.FirstAction),
                     firstEventTriggered = false,
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastAction).isEqualTo(TestedUiAction.FirstAction)
         }
     }
 
     @Test
     fun `Triggering ThirdEvent - UiState is updated with an Action used only once`() {
-        val scenario = launchFragmentInContainer<TestedDialogFragment>()
+        val scenario = launchFragmentInContainer<TestedFragment>()
         scenario.onFragment { fragment ->
             assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.actionCounter).isEqualTo(0)
             fragment.viewModel.handleEvent(TestedUiEvent.ThirdEvent)
-            assertThat(fragment.stateCounter).isEqualTo(2)
+            assertThat(fragment.stateCounter).isEqualTo(1)
             assertThat(fragment.actionCounter).isEqualTo(1)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = Consumable(TestedUiAction.FirstAction),
                     firstEventTriggered = false,
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastAction).isEqualTo(TestedUiAction.FirstAction)
         }
 
         scenario.recreate()
@@ -179,11 +182,11 @@ class MVIDialogFragmentTest {
             assertThat(fragment.actionCounter).isEqualTo(0)
             assertThat(fragment.lastState).isEqualTo(
                 TestedUiState(
-                    action = Consumable(TestedUiAction.FirstAction),
                     firstEventTriggered = false,
                     secondEventTriggered = false,
                 )
             )
+            assertThat(fragment.lastAction).isNull()
         }
     }
 }
