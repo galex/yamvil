@@ -1,7 +1,7 @@
 package dev.galex.yamvil.models.base
 
 /**
- * Interface for classes that can be acted upon for one-off actions.
+ * Interface for classes that can be acted upon for one-time actions.
  * @param Action the type of the action
  */
 interface Actionable<Action> {

@@ -3,8 +3,13 @@
 [![Maven Central Version](https://img.shields.io/maven-central/v/dev.galex.yamvil/runtime)](https://central.sonatype.com/search?q=dev.galex.yamvil)
 [![CI](https://github.com/galex/yamvil/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/galex/yamvil/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/github/galex/yamvil/branch/main/graph/badge.svg?token=ML8EN8PYP0)](https://codecov.io/github/galex/yamvil)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+> Do we really need Yet Another MVI Library? Yes, we do!
 
 Yamvil is a library and a compiler plugin to help you write MVI Screens in the easiest way possible on Android and Compose Multiplatform.
+
+> ⚠️ **This is a work in progress**: Yamvil is still in early development and is not ready for production use. The API is subject to change and Android Studio is not ready to run the plugin yet.
 
 ## Documentation
 
@@ -20,7 +25,7 @@ In your libs.version.toml, add the following:
 
 ```toml
 [versions]
-yamvil = "0.0.1"
+yamvil = "<latest version>"
 
 [libraries]
 yamvil = { group = "dev.galex.yamvil", name = "runtime", version.ref = "yamvil" }
