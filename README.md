@@ -1,5 +1,6 @@
 # Yamvil
 
+[![Maven Central Version](https://img.shields.io/maven-central/v/dev.galex.yamvil/runtime)](https://central.sonatype.com/search?q=dev.galex.yamvil)
 [![CI](https://github.com/galex/yamvil/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/galex/yamvil/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/github/galex/yamvil/branch/main/graph/badge.svg?token=ML8EN8PYP0)](https://codecov.io/github/galex/yamvil)
 
