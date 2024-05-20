@@ -1,18 +1,17 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
   id("java-gradle-plugin")
-  kotlin("jvm")
-  id("com.github.gmazzo.buildconfig")
-  //`maven-publish`
+  //alias(libs.plugins.java.gradle.plugin)
+  alias(libs.plugins.kotlin.jvm)
+  alias(libs.plugins.buildconfig)
+  alias(libs.plugins.vanniktech.maven.publish)
 }
 
 dependencies {
   implementation(kotlin("gradle-plugin-api"))
-  implementation("com.google.code.gson:gson:2.9.1")
+  implementation(libs.gson)
   implementation(projects.compilerGradleDsl)
-
-  testImplementation("com.google.truth:truth:1.4.2")
-  testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
 }
 
 buildConfig {
@@ -22,12 +21,6 @@ buildConfig {
   buildConfigField("String", "KOTLIN_PLUGIN_GROUP", "\"${compilerProject.group}\"")
   buildConfigField("String", "KOTLIN_COMPILER_PLUGIN_NAME", "\"${compilerProject.name}\"")
   buildConfigField("String", "KOTLIN_PLUGIN_VERSION", "\"${compilerProject.version}\"")
-/*
-  val dslProject = projects.dsl
-  buildConfigField("String", "DSL_LIBRARY_GROUP", "\"${dslProject.group}\"")
-  buildConfigField("String", "DSL_LIBRARY_NAME", "\"${dslProject.name}\"")
-  buildConfigField("String", "DSL_LIBRARY_VERSION", "\"${dslProject.version}\"")
-*/
 }
 
 gradlePlugin {
@@ -41,14 +34,34 @@ gradlePlugin {
   }
 }
 
-//publishing {
-//  publications {
-//    create<MavenPublication>("gradlePlugin") {
-//      groupId = project.group.toString()
-//      artifactId = project.name
-//      version = project.version.toString()
-//      from(components["java"])
-//      artifact(tasks.kotlinSourcesJar)
-//    }
-//  }
-//}
+mavenPublishing {
+  publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+  signAllPublications()
+
+  pom {
+    name.set("Yamvil Compiler Gradle Plugin")
+    description.set("Yamvil is a library that helps you to write MVI Screens the right way at compile time")
+    inceptionYear.set("2024")
+    url.set("https://github.com/galex/yamvil")
+    licenses {
+      license {
+        name.set("The Apache License, Version 2.0")
+        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+        distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+      }
+    }
+    developers {
+      developer {
+        id.set("galex")
+        name.set("Alexander Gherschon")
+        url.set("https://galex.dev/")
+      }
+    }
+    scm {
+      url.set("https://github.com/galex/yamvil")
+      connection.set("scm:git:git://github.com/galex/yamvil.git")
+      developerConnection.set("scm:git:ssh://git@github.com/galex/yamvil.git")
+    }
+  }
+}
+

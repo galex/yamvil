@@ -82,18 +82,6 @@ kover {
     }
 }
 
-//afterEvaluate {
-//    publishing {
-//        publications.configureEach {
-//            if (this is MavenPublication) {
-//                groupId = project.group.toString()
-//                artifactId = artifactId.replace(project.name, "runtime")
-//                version = project.version.toString()
-//            }
-//        }
-//    }
-//}
-//
 mavenPublishing {
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
     signAllPublications()

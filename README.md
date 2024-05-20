@@ -7,7 +7,7 @@
 
 > Do we really need Yet Another MVI Library? Yes, we do!
 
-Yamvil is a library and a compiler plugin to help you write MVI Screens in the easiest way possible on Android and Compose Multiplatform.
+Yamvil is a library and a compiler plugin to help write MVI Screens ensuring a proper Unidirectional Data Flow way for Android and Compose Multiplatform.
 
 > ⚠️ **This is a work in progress**: Yamvil is still in early development and is not ready for production use. The API is subject to change and Android Studio is not ready to run the plugin yet.
 
@@ -15,11 +15,7 @@ Yamvil is a library and a compiler plugin to help you write MVI Screens in the e
 
 The full documentation of Yamvil [is available right here](https://docs.galex.dev/yamvil/).
 
-## Introduction
-
-Yamvil is a tool built to help us write Screens that follow the MVI Pattern on Android and Compose Multiplatform.
-
-## Installation
+## Quick Start
 
 In your libs.version.toml, add the following:
 

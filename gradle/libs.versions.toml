@@ -1,5 +1,7 @@
 [versions]
 agp = "8.3.0"
+junitJupiterApi = "5.10.1"
+junitJupiterEngine = "5.10.1"
 kotlin = "2.0.0-RC3"
 compose = "1.6.7"
 compose-material3 = "1.2.1"
@@ -15,8 +17,10 @@ robolectric = "4.12"
 truth = "1.4.2"
 kover = "0.8.0"
 vanniktech-maven-publish = "0.28.0"
+buildconfig= "3.1.0"
 
 [libraries]
+jupiter-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junitJupiterEngine" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment-ktx" }
@@ -39,6 +43,8 @@ kotlin-compiler-internal-test-framework = { module = "org.jetbrains.kotlin:kotli
 junit = { module = "junit:junit", version.ref = "junit" }
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit-bom" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-bom" }
+junit-jupiter-api = { module = "org.junit.platform:junit-jupiter-api" }
+junit-jupiter-engine = { module = "org.junit.platform:junit-jupiter-engine" }
 junit-jupiter-platform-commons = { module = "org.junit.platform:junit-platform-commons" }
 junit-jupiter-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 junit-jupiter-platform-runner = { module = "org.junit.platform:junit-platform-runner" }
@@ -54,6 +60,7 @@ truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+java-gradle-plugin = { id = "java-gradle-plugin" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -62,4 +69,6 @@ kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = 
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
+buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }
+
 

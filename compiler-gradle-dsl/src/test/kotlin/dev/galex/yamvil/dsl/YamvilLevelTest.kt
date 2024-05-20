@@ -6,11 +6,14 @@ import org.junit.Test
 class YamvilLevelTest {
 
     @Test
-    fun `YamvilConfiguration - Default value is Error`() {
+    fun `YamvilConfiguration - Default values`() {
         // When
         val config = YamvilConfiguration()
         // Then
         Truth.assertThat(config.level).isEqualTo(YamvilLevel.Error)
+        Truth.assertThat(config.screenSuffix).isEqualTo("Screen")
+        Truth.assertThat(config.uiStateParameterName).isEqualTo("uiState")
+        Truth.assertThat(config.uiEventFunctionParameterMame).isEqualTo("handleEvent")
     }
 
     @Test

@@ -11,7 +11,7 @@ import java.io.FilenameFilter
 
 class PluginDslProvider(testServices: TestServices) : EnvironmentConfigurator(testServices) {
     companion object {
-        private const val DSL_JAR_DIR = "../dsl/build/libs/"
+        private const val DSL_JAR_DIR = "../compiler-gradle-dsl/build/libs/"
         private val DSL_JAR_FILTER = FilenameFilter { _, name -> name.startsWith("dsl") && name.endsWith(".jar") }
     }
 
@@ -22,5 +22,5 @@ class PluginDslProvider(testServices: TestServices) : EnvironmentConfigurator(te
         configuration.addJvmClasspathRoot(jar)
     }
 
-    private val failMessage = { "Jar with DSL does not exist. Please run ./gradlew :dsl:jar" }
+    private val failMessage = { "Jar with DSL does not exist. Please run ./gradlew :compiler-gradle-dsl:jar" }
 }

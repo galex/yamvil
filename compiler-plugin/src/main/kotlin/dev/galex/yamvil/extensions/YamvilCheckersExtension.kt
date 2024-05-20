@@ -1,6 +1,6 @@
 package dev.galex.yamvil.extensions
 
-import dev.galex.yamvil.checkers.ScreensChecker
+import dev.galex.yamvil.checkers.ComposeScreensChecker
 import dev.galex.yamvil.dsl.YamvilConfiguration
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.analysis.checkers.declaration.DeclarationCheckers
@@ -14,7 +14,7 @@ class YamvilCheckersExtension(session: FirSession, private val configuration: Ya
 
             override val functionCheckers: Set<FirFunctionChecker>
                 get() = setOf(
-                    ScreensChecker(configuration)
+                    ComposeScreensChecker(configuration)
                 )
         }
 }

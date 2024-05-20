@@ -19,5 +19,5 @@ plugins {
 
 allprojects {
     group = "dev.galex.yamvil"
-    version = "0.0.1"
+    version = "0.0.2"
 }

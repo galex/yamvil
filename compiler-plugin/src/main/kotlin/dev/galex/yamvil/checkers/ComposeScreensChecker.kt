@@ -23,12 +23,11 @@ import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.types.ConeKotlinType
 import org.jetbrains.kotlin.fir.types.classId
 import org.jetbrains.kotlin.fir.types.coneType
-import org.jetbrains.kotlin.fir.types.isArrayType
 import org.jetbrains.kotlin.fir.types.type
 import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 
-class ScreensChecker(
+class ComposeScreensChecker(
     private val configuration: YamvilConfiguration
 ) : FirFunctionChecker(MppCheckerKind.Common) {
 
@@ -38,7 +37,7 @@ class ScreensChecker(
         val functionName = declaration.nameOrSpecialName.asString()
 
         // Stops checking a function if it not on par with our minimum requirements
-        if (!declaration.isComposable(context) || !functionName.endsWith("Screen")) return
+        if (!declaration.isComposable(context) || !functionName.endsWith(configuration.screenSuffix)) return
         // Get ViewModel class
         val viewModelInfo = declaration.findViewModel(functionName, context)
 
@@ -63,9 +62,8 @@ class ScreensChecker(
             return
         }
 
-        if (uiStateInfo?.uiStateParameter?.name !in listOf("uiState", "state") ) {
-            reporter.reportOn(declaration.source, diagnosticFactory, "Please rename ${uiStateInfo?.uiStateParameter?.name} to state or uiState", context)
-            return
+        if (uiStateInfo?.uiStateParameter?.name != configuration.uiStateParameterName) {
+            reporter.reportOn(declaration.source, diagnosticFactory, "Please rename ${uiStateInfo?.uiStateParameter?.name} to \"${configuration.uiStateParameterName}\"", context)
         }
 
         // uiEvent verification
@@ -74,9 +72,8 @@ class ScreensChecker(
             return
         }
 
-        if (uiStateInfo?.uiEventParameter?.name !in listOf("handleEvent", "onEvent") ) {
+        if (uiStateInfo?.uiEventParameter?.name != configuration.uiEventFunctionParameterMame) {
             reporter.reportOn(declaration.source, diagnosticFactory, "Please rename ${uiStateInfo?.uiEventParameter?.name} to handleEvent or onEvent", context)
-            return
         }
     }
 
