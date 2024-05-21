@@ -12,7 +12,7 @@ import java.io.FilenameFilter
 class PluginDslProvider(testServices: TestServices) : EnvironmentConfigurator(testServices) {
     companion object {
         private const val DSL_JAR_DIR = "../compiler-gradle-dsl/build/libs/"
-        private val DSL_JAR_FILTER = FilenameFilter { _, name -> name.startsWith("dsl") && name.endsWith(".jar") }
+        private val DSL_JAR_FILTER = FilenameFilter { _, name -> name.startsWith("compiler-gradle-dsl") && name.endsWith(".jar") }
     }
 
     override fun configureCompilerConfiguration(configuration: CompilerConfiguration, module: TestModule) {

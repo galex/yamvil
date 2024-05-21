@@ -55,6 +55,8 @@ yamvil {
     level = YamvilLevel.Warning
 }
 ```
-## Contributing
+## Publishing
 
 Run `./gradlew publishToMavenLocal` to publish all the artefacts locally.
+
+Run `./gradlew publishAndReleaseToMavenCentral --no-configuration-cache` to publish all artefacts to Maven Central.
