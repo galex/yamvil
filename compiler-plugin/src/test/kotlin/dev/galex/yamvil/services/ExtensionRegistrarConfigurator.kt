@@ -21,7 +21,7 @@ class ExtensionRegistrarConfigurator(
         configuration: CompilerConfiguration
     ) {
         val yamvilConfiguration = YamvilConfiguration().apply {
-            level = YamvilLevel.Warning
+            level = YamvilLevel.Error
         }
 
         FirExtensionRegistrarAdapter.registerExtension(YamvilPluginRegistrar(yamvilConfiguration))

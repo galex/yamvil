@@ -22,18 +22,18 @@ public class DiagnosticTestGenerated extends AbstractDiagnosticTest {
   }
 
   @Nested
-  @TestMetadata("src/test-data/diagnostics/OneClassPerFile")
+  @TestMetadata("src/test-data/diagnostics/fragment")
   @TestDataPath("$PROJECT_ROOT")
-  public class OneClassPerFile {
+  public class Fragment {
     @Test
-    public void testAllFilesPresentInOneClassPerFile() {
-      KtTestUtil.assertAllTestsPresentByMetadataWithExcluded(this.getClass(), new File("src/test-data/diagnostics/OneClassPerFile"), Pattern.compile("^(.+)\\.kt$"), null, true);
+    public void testAllFilesPresentInFragment() {
+      KtTestUtil.assertAllTestsPresentByMetadataWithExcluded(this.getClass(), new File("src/test-data/diagnostics/fragment"), Pattern.compile("^(.+)\\.kt$"), null, true);
     }
 
     @Test
-    @TestMetadata("SomeClass.kt")
-    public void testSomeClass() {
-      runTest("src/test-data/diagnostics/OneClassPerFile/SomeClass.kt");
+    @TestMetadata("AllGoodFragment.kt")
+    public void testAllGoodFragment() {
+      runTest("src/test-data/diagnostics/fragment/AllGoodFragment.kt");
     }
   }
 }

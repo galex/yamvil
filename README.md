@@ -9,7 +9,7 @@
 
 Yamvil is a library and a compiler plugin to help write MVI Screens ensuring a proper Unidirectional Data Flow way for Android and Compose Multiplatform.
 
-> ⚠️ **This is a work in progress**: Yamvil is still in early development and is not ready for production use. The API is subject to change and Android Studio is not ready to run the plugin yet.
+> ⚠️ **This is a work in progress**: Yamvil is still in early development and is not ready for production use. The API is subject to change and Android Studio is not ready to run the compiler plugin, **yet**.
 
 ## Documentation
 

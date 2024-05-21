@@ -1,0 +1,48 @@
+FILE: AllGoodFragment.kt
+    public final class AllGoodFragment : <ERROR TYPE REF: Symbol not found for MVIFragment> {
+        public constructor(): R|AllGoodFragment| {
+            super<<ERROR TYPE REF: Symbol not found for MVIFragment>>()
+        }
+
+        public open override val viewModel: <ERROR TYPE REF: Symbol not found for DashboardViewModel>by <Unresolved name: viewModels>#()
+            public get(): <ERROR TYPE REF: Symbol not found for DashboardViewModel> {
+                ^ this@R|/AllGoodFragment|.D|/AllGoodFragment.viewModel|.<Ambiguity: getValue, [kotlin/getValue, kotlin/getValue, kotlin/getValue, kotlin/collections/getValue, kotlin/collections/getValue]>#(this@R|/AllGoodFragment|, ::R|/AllGoodFragment.viewModel|)
+            }
+
+        public open override fun observeUiState(uiState: <ERROR TYPE REF: Symbol not found for DashboardUiState>): R|kotlin/Unit| {
+            when (R|<local>/uiState|.<Unresolved name: state>#) {
+                ==($subj$, <Unresolved name: DashboardUiState>#.<Unresolved name: ContentState>#.<Unresolved name: Loading>#) ->  {
+                    this@R|/AllGoodFragment|.R|/AllGoodFragment.onLoading|()
+                }
+                ($subj$ is <ERROR TYPE REF: Symbol not found for DashboardUiState>) ->  {
+                    this@R|/AllGoodFragment|.R|/AllGoodFragment.onContent|(R|<local>/uiState|.<Unresolved name: state>#)
+                }
+                ==($subj$, <Unresolved name: DashboardUiState>#.<Unresolved name: ContentState>#.<Unresolved name: Error>#) ->  {
+                    this@R|/AllGoodFragment|.R|/AllGoodFragment.onError|()
+                }
+            }
+
+            R|<local>/uiState|.<Unresolved name: onAction>#(<L> = onAction@fun <anonymous>(action: <ERROR TYPE REF: Cannot infer type for parameter action>): R|kotlin/Unit| <inline=Unknown>  {
+                when (R|<local>/action|) {
+                    ==($subj$, <Unresolved name: DashboardUiAction>#.<Unresolved name: NavigateToNext>#) ->  {
+                        this@R|/AllGoodFragment|.R|/AllGoodFragment.navigateToNext|()
+                    }
+                }
+
+            }
+            )
+        }
+
+        private final fun navigateToNext(): R|kotlin/Unit| {
+        }
+
+        private final fun onLoading(): R|kotlin/Unit| {
+        }
+
+        private final fun onContent(content: <ERROR TYPE REF: Symbol not found for DashboardUiState>): R|kotlin/Unit| {
+        }
+
+        private final fun onError(): R|kotlin/Unit| {
+        }
+
+    }

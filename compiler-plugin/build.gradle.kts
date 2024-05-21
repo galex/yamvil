@@ -5,6 +5,7 @@ plugins {
     kotlin("kapt")
     alias(libs.plugins.buildconfig)
     alias(libs.plugins.vanniktech.maven.publish)
+    alias(libs.plugins.kover)
 }
 
 dependencies {
@@ -58,10 +59,8 @@ tasks.create<JavaExec>("generateTests") {
 }
 
 tasks.test {
-    testLogging {
-        showStandardStreams = true
-    }
-
+    dependsOn(project(":compiler-gradle-dsl").tasks.getByName("jar"))
+    dependsOn(project(":runtime").tasks.getByName("compileDebugSources"))
     useJUnitPlatform()
     doFirst {
         setLibraryProperty("org.jetbrains.kotlin.test.kotlin-stdlib", "kotlin-stdlib")
@@ -72,7 +71,7 @@ tasks.test {
         setLibraryProperty("org.jetbrains.kotlin.test.kotlin-annotations-jvm", "kotlin-annotations-jvm")
     }
 
-    dependsOn(":compile-gradle-dsl:jar")
+
 }
 
 fun Test.setLibraryProperty(propName: String, jarName: String) {
