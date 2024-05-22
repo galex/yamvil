@@ -1,6 +1,6 @@
 package dev.galex.yamvil
 
-import dev.conguard.compiler.runners.AbstractDiagnosticTest
+import dev.galex.yamvil.runners.AbstractDiagnosticTest
 import org.jetbrains.kotlin.generators.generateTestGroupSuiteWithJUnit5
 
 fun main() {

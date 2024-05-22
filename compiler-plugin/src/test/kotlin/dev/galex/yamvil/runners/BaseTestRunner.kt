@@ -1,4 +1,4 @@
-package dev.conguard.compiler.runners
+package dev.galex.yamvil.runners
 
 import dev.conguard.compiler.services.ExtensionRegistrarConfigurator
 import dev.conguard.compiler.services.PluginDslProvider

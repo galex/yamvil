@@ -1,4 +1,4 @@
-package dev.conguard.compiler.runners
+package dev.galex.yamvil.runners
 
 import org.jetbrains.kotlin.test.FirParser
 import org.jetbrains.kotlin.test.builders.TestConfigurationBuilder

@@ -1,3 +1,5 @@
+import dev.galex.yamvil.dsl.YamvilLevel
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -75,4 +77,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+yamvil {
+    level = YamvilLevel.Warning
+    screenSuffix = "MVIScreen" // Default value is "Screen"
+    uiStateParameterName = "state" // Default value is "uiState"
+    uiEventFunctionParameterMame = "onEvent" // Default value is "handleEvent"
 }
