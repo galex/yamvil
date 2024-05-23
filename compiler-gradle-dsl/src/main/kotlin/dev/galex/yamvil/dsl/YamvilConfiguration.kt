@@ -12,7 +12,7 @@ open class YamvilConfiguration {
 class ComposeConfiguration {
     var screenSuffix = "Screen"
     var uiStateParameterName = "uiState"
-    var handleEventFunctionParameterMame = "handleEvent"
+    var handleEventParameterMame = "handleEvent"
 }
 
 

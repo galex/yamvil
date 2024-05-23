@@ -14,13 +14,13 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '17'
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
       - name: Generate kover coverage report
-        run: ./gradlew koverXmlReportDebug
+        run: ./gradlew :compiler-gradle-dsl:koverXmlReport :compiler-plugin:koverXmlReport :runtime:koverXmlReportDebug
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./runtime/build/reports/kover/reportDebug.xml,./runtime-channel/build/reports/kover/reportDebug.xml
+          files: ./compiler-gradle-dsl/build/reports/kover/report.xml,./compiler-plugin/build/reports/kover/report.xml,./runtime/build/reports/kover/reportDebug.xml

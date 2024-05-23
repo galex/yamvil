@@ -97,11 +97,11 @@ class ComposeScreensChecker(
         }
 
         // handleEvent parameter name
-        if (uiStateInfo?.uiEventParameter?.name != config.compose.handleEventFunctionParameterMame) {
+        if (uiStateInfo?.uiEventParameter?.name != config.compose.handleEventParameterMame) {
             reporter.reportOn(
                 source = declaration.source,
                 factory = YamvilFactories.renameHandleEventParameter(config.level),
-                a = "Please rename \"${uiStateInfo?.uiEventParameter?.name}\" to \"${config.compose.handleEventFunctionParameterMame}\"",
+                a = "Please rename \"${uiStateInfo?.uiEventParameter?.name}\" to \"${config.compose.handleEventParameterMame}\"",
                 context = context
             )
         }

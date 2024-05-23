@@ -83,7 +83,7 @@ In your libs.version.toml, add the following:
 
 ```toml
 [versions]
-yamvil = "<latest version>"
+yamvil = "0.0.2"
 
 [libraries]
 yamvil = { group = "dev.galex.yamvil", name = "runtime", version.ref = "yamvil" }

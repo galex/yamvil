@@ -6,26 +6,21 @@ import androidx.compose.ui.Modifier
 import dev.galex.yamvil.compose.LaunchedActionEffect
 
 @Composable
-fun SomeScreen() {
-
-}
-
-@Composable
 fun DashboardScreen(
-    uiState: DashboardUiState,
-    onEvent: (DashboardUiEvent) -> Unit,
+    state: DashboardUiState,
+    handleEvent: (DashboardUiEvent) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LaunchedActionEffect(uiState) { action: DashboardUiAction ->
+    LaunchedActionEffect(state) { action: DashboardUiAction ->
         when (action) {
             DashboardUiAction.NavigateToNext -> {}
         }
     }
 
-    when (uiState.state) {
+    when (state.state) {
         is DashboardUiState.ContentState.Loading -> DashboardLoadingContent()
         is DashboardUiState.ContentState.Error -> DashboardErrorContent()
-        is DashboardUiState.ContentState.Content -> DashboardContent(uiState.state)
+        is DashboardUiState.ContentState.Content -> DashboardContent(state.state)
     }
 
     Text(text = "DashboardScreen")

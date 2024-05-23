@@ -11,9 +11,9 @@ class YamvilLevelTest {
         val config = YamvilConfiguration()
         // Then
         Truth.assertThat(config.level).isEqualTo(YamvilLevel.Error)
-        Truth.assertThat(config.screenSuffix).isEqualTo("Screen")
-        Truth.assertThat(config.uiStateParameterName).isEqualTo("uiState")
-        Truth.assertThat(config.uiEventFunctionParameterMame).isEqualTo("handleEvent")
+        Truth.assertThat(config.compose.screenSuffix).isEqualTo("Screen")
+        Truth.assertThat(config.compose.uiStateParameterName).isEqualTo("uiState")
+        Truth.assertThat(config.compose.handleEventParameterMame).isEqualTo("handleEvent")
     }
 
     @Test

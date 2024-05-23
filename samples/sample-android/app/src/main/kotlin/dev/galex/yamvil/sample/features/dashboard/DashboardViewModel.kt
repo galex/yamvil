@@ -3,7 +3,7 @@ package dev.galex.yamvil.sample.features.dashboard
 import dev.galex.yamvil.models.base.Consumable
 import dev.galex.yamvil.viewmodels.MVIViewModel
 
-class DashboardViewModel: MVIViewModel<DashboardUiState, DashboardUiEvent>() {
+class DashboardViewModel2: MVIViewModel<DashboardUiState, DashboardUiEvent>() {
 
     override fun initializeUiState(): DashboardUiState {
         return DashboardUiState(state = DashboardUiState.ContentState.Loading)
