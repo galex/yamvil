@@ -35,4 +35,22 @@ class YamvilLevelTest {
         // Then
         Truth.assertThat(config.level).isEqualTo(YamvilLevel.Error)
     }
+
+    @Test
+    fun `YamvilConfiguration - Compose DSL`() {
+        // When
+        val config = YamvilConfiguration().apply {
+            level = YamvilLevel.Error
+            compose {
+                screenSuffix = "MVIScreen"
+                uiStateParameterName = "state"
+                handleEventParameterMame = "onEvent"
+            }
+        }
+        // Then
+        Truth.assertThat(config.level).isEqualTo(YamvilLevel.Error)
+        Truth.assertThat(config.compose.screenSuffix).isEqualTo("MVIScreen")
+        Truth.assertThat(config.compose.uiStateParameterName).isEqualTo("state")
+        Truth.assertThat(config.compose.handleEventParameterMame).isEqualTo("onEvent")
+    }
 }
