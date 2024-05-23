@@ -7,20 +7,20 @@ import dev.galex.yamvil.compose.LaunchedActionEffect
 
 @Composable
 fun DashboardScreen(
-    state: DashboardUiState,
+    uiState: DashboardUiState,
     handleEvent: (DashboardUiEvent) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LaunchedActionEffect(state) { action: DashboardUiAction ->
+    LaunchedActionEffect(uiState) { action: DashboardUiAction ->
         when (action) {
             DashboardUiAction.NavigateToNext -> {}
         }
     }
 
-    when (state.state) {
+    when (uiState.state) {
         is DashboardUiState.ContentState.Loading -> DashboardLoadingContent()
         is DashboardUiState.ContentState.Error -> DashboardErrorContent()
-        is DashboardUiState.ContentState.Content -> DashboardContent(state.state)
+        is DashboardUiState.ContentState.Content -> DashboardContent(uiState.state)
     }
 
     Text(text = "DashboardScreen")

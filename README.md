@@ -5,9 +5,9 @@
 [![codecov](https://codecov.io/github/galex/yamvil/branch/main/graph/badge.svg?token=ML8EN8PYP0)](https://codecov.io/github/galex/yamvil)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-> ⚠️ **This is a work in progress**: Yamvil is still in early development and is not ready for production use. The API is subject to change and Android Studio is not ready to run the compiler plugin, **yet**.
+Yamvil is a library and a compiler plugin bringing MVI Infrastructure to ViewModels, Fragments and Jetpack Compose, for Android and Compose Multiplatform apps.
 
-Yamvil is a library and a compiler plugin to help write MVI Screens ensuring a proper Unidirectional Data Flow way for Android and Compose Multiplatform.
+> ⚠️ **This is a work in progress**: Yamvil is still in early development and is not ready for production use. The API is subject to change and only Android Studio Nightly shows the errors thrown by the compiler plugin.
 
 ## Documentation
 
@@ -109,12 +109,14 @@ dependencies {
 ```
 ## Configuration
 
-By default, anything yamvil have to tell you will be an as an error.
-You can change it to Warning:
-
 ```kotlin
 yamvil {
-    level = YamvilLevel.Warning
+    level = YamvilLevel.Error // or Warning
+    compose {
+        screenSuffix = "Screen"
+        uiStateParameterName = "uiState"
+        handleEventParameterMame = "onEvent"
+    }
 }
 ```
 ## Publishing

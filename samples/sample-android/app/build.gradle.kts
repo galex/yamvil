@@ -79,10 +79,10 @@ dependencies {
 }
 
 yamvil {
-    level = YamvilLevel.Error
+    level = YamvilLevel.Error // or Warning
     compose {
         screenSuffix = "Screen" // Default value is "Screen"
         uiStateParameterName = "uiState" // Default value is "uiState"
-        handleEventFunctionParameterMame = "onEvent" // Default value is "handleEvent"
+        handleEventParameterMame = "onEvent" // Default value is "handleEvent
     }
 }
