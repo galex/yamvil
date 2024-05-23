@@ -32,12 +32,12 @@ import java.util.*
 @OptIn(ExperimentalCompilerApi::class)
 @AutoService(CompilerPluginRegistrar::class)
 class YamvilCompilerPluginRegistrar(
-    private val defaultJsonConventions: String,
+    private val defaultJsonYamvilConfiguration: String,
 ) : CompilerPluginRegistrar() {
 
     @Suppress("unused") // Used by service loader
     constructor() : this(
-        defaultJsonConventions = Base64.getEncoder().encodeToString("{}".toByteArray()),
+        defaultJsonYamvilConfiguration = Base64.getEncoder().encodeToString("{}".toByteArray()),
     )
 
     override val supportsK2: Boolean
@@ -47,7 +47,7 @@ class YamvilCompilerPluginRegistrar(
 
         val messageCollector = configuration.get(CLIConfigurationKeys.MESSAGE_COLLECTOR_KEY, MessageCollector.NONE)
         messageCollector.report(CompilerMessageSeverity.INFO, "Running YamvilComponentRegistrar")
-        val encodedConventions = configuration.get(YamvilCommandLineProcessor.ARG_JSON_CONVENTIONS, defaultJsonConventions)
+        val encodedConventions = configuration.get(YamvilCommandLineProcessor.ARG_JSON_CONVENTIONS, defaultJsonYamvilConfiguration)
 
         println("encoded config = $encodedConventions")
         val decodedConventions = String(Base64.getDecoder().decode(encodedConventions))

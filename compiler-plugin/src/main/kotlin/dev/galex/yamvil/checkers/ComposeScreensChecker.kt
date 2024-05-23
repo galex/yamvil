@@ -1,9 +1,7 @@
 package dev.galex.yamvil.checkers
 
 import dev.galex.yamvil.dsl.YamvilConfiguration
-import dev.galex.yamvil.dsl.YamvilLevel
-import dev.galex.yamvil.errors.YamvilFirErrors.NO_VIEW_MODEL_ERROR
-import dev.galex.yamvil.errors.YamvilFirErrors.NO_VIEW_MODEL_WARNING
+import dev.galex.yamvil.errors.YamvilFactories
 import dev.galex.yamvil.models.BaseMviViewModelInfo
 import dev.galex.yamvil.models.ParameterInfo
 import dev.galex.yamvil.models.ParametersInfo
@@ -21,6 +19,7 @@ import org.jetbrains.kotlin.fir.resolve.providers.getRegularClassSymbolByClassId
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.types.ConeKotlinType
+import org.jetbrains.kotlin.fir.types.FirTypeRef
 import org.jetbrains.kotlin.fir.types.classId
 import org.jetbrains.kotlin.fir.types.coneType
 import org.jetbrains.kotlin.fir.types.type
@@ -28,52 +27,83 @@ import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 
 class ComposeScreensChecker(
-    private val configuration: YamvilConfiguration
+    private val config: YamvilConfiguration
 ) : FirFunctionChecker(MppCheckerKind.Common) {
 
     override fun check(declaration: FirFunction, context: CheckerContext, reporter: DiagnosticReporter) {
 
-        val diagnosticFactory = configuration.asLevel()
         val functionName = declaration.nameOrSpecialName.asString()
 
         // Stops checking a function if it not on par with our minimum requirements
-        if (!declaration.isComposable(context) || !functionName.endsWith(configuration.screenSuffix)) return
+        if (!declaration.isComposable(context) || !functionName.endsWith(config.compose.screenSuffix)) return
         // Get ViewModel class
         val viewModelInfo = declaration.findViewModel(functionName, context)
 
         // Reports if we can't find a ViewModel class with the same prefix in the same package of this file
         if (viewModelInfo == null || viewModelInfo.exists == false) {
-            reporter.reportOn(declaration.source, diagnosticFactory, "Could not find ViewModel class ${viewModelInfo?.fullName}", context)
+            reporter.reportOn(
+                source = declaration.source,
+                factory = YamvilFactories.noViewModel(config.level),
+                a = "Could not find a ViewModel class at ${viewModelInfo?.fullName}",
+                context = context,
+            )
             return
         }
 
         // Reports if the ViewModel doesn't implement MVIViewModel
         if (viewModelInfo.implementsBaseClass == false) {
-            reporter.reportOn(declaration.source, diagnosticFactory, "${viewModelInfo.fqName.asString()} should implement MVIViewModel", context)
+            reporter.reportOn(
+                source = declaration.source,
+                factory = YamvilFactories.noMVIViewModel(config.level),
+                a = "${viewModelInfo.fullName} should implement dev.galex.yamvil.viewmodels.MVIViewModel",
+                context = context,
+            )
             return
         }
 
         // Check that we have parameters in our Composable for the uiState and for the uiEvent
         val uiStateInfo = declaration.getParametersInfo(viewModelInfo.uiStateClass, viewModelInfo.uiEventClass)
 
-        // uiState verification
+        // uiState existence verification
         if (uiStateInfo?.uiStateParameter?.exists == false ) {
-            reporter.reportOn(declaration.source, diagnosticFactory, "$functionName should have a parameter for receiving the ViewModel's UiState class ${viewModelInfo.uiStateClass?.asString()}", context)
+            reporter.reportOn(
+                source = declaration.source,
+                factory = YamvilFactories.noUiStateParameter(config.level),
+                a = "$functionName should have a parameter for receiving the ViewModel's UiState class ${viewModelInfo.uiStateClass?.asString()}",
+                context = context,
+            )
             return
         }
 
-        if (uiStateInfo?.uiStateParameter?.name != configuration.uiStateParameterName) {
-            reporter.reportOn(declaration.source, diagnosticFactory, "Please rename ${uiStateInfo?.uiStateParameter?.name} to \"${configuration.uiStateParameterName}\"", context)
+        // uiState parameter name
+        if (uiStateInfo?.uiStateParameter?.name != config.compose.uiStateParameterName) {
+            reporter.reportOn(
+                source = declaration.source,
+                factory = YamvilFactories.renameUiStateParameter(config.level),
+                a = "Please rename parameter \"${uiStateInfo?.uiStateParameter?.name}\" to \"${config.compose.uiStateParameterName}\"",
+                context = context,
+            )
         }
 
-        // uiEvent verification
+        // handleEvent existence verification
         if (uiStateInfo?.uiEventParameter?.exists == false ) {
-            reporter.reportOn(declaration.source, diagnosticFactory, "$functionName should have a lambda parameter receiving ${viewModelInfo.uiEventClass?.asString()}", context)
+            reporter.reportOn(
+                source = declaration.source,
+                factory = YamvilFactories.noHandleEventParameter(config.level),
+                a = "$functionName should have a lambda parameter receiving ${viewModelInfo.uiEventClass?.asString()}",
+                context = context,
+            )
             return
         }
 
-        if (uiStateInfo?.uiEventParameter?.name != configuration.uiEventFunctionParameterMame) {
-            reporter.reportOn(declaration.source, diagnosticFactory, "Please rename ${uiStateInfo?.uiEventParameter?.name} to handleEvent or onEvent", context)
+        // handleEvent parameter name
+        if (uiStateInfo?.uiEventParameter?.name != config.compose.handleEventFunctionParameterMame) {
+            reporter.reportOn(
+                source = declaration.source,
+                factory = YamvilFactories.renameHandleEventParameter(config.level),
+                a = "Please rename \"${uiStateInfo?.uiEventParameter?.name}\" to \"${config.compose.handleEventFunctionParameterMame}\"",
+                context = context
+            )
         }
     }
 
@@ -92,7 +122,7 @@ class ComposeScreensChecker(
             packageFqName = packageName,
             fqName = viewModelName,
             exists = classSymbol != null,
-            implementsBaseClass = baseViewModelInfo?.implemented ?: false,
+            implementsBaseClass = baseViewModelInfo?.implemented == true,
             uiStateClass = baseViewModelInfo?.uiStateClass,
             uiEventClass = baseViewModelInfo?.uiEventClass,
             uiActionClass = " "
@@ -119,11 +149,6 @@ class ComposeScreensChecker(
         return hasAnnotation(annotationClassId, context.session)
     }
 
-    private fun YamvilConfiguration.asLevel() = when (level) {
-        YamvilLevel.Warning -> NO_VIEW_MODEL_WARNING
-        YamvilLevel.Error -> NO_VIEW_MODEL_ERROR
-    }
-
     private fun FirFunction.getParametersInfo(uiStateClass: FqName?, uiEventClass: FqName?): ParametersInfo? {
 
         val uiStateParameter = valueParameters.find {
@@ -131,8 +156,7 @@ class ComposeScreensChecker(
         }
 
         val uiEventParameter = valueParameters.find {
-            it.returnTypeRef.coneType.classId?.asSingleFqName()?.asString() == "kotlin.Function1"
-                    && it.returnTypeRef.coneType.typeArguments.firstOrNull { it.type?.classId?.asString() == uiEventClass?.asString() } != null
+            it.returnTypeRef.isLambda() && it.returnTypeRef.hasParameter(uiEventClass)
         }
 
         return ParametersInfo(
@@ -145,5 +169,13 @@ class ComposeScreensChecker(
                 name = uiEventParameter?.name?.asString()
             ),
         )
+    }
+
+    private fun FirTypeRef.isLambda(): Boolean {
+        return coneType.classId?.asSingleFqName()?.asString() == "kotlin.Function1"
+    }
+
+    private fun FirTypeRef.hasParameter(ofType: FqName?): Boolean {
+        return coneType.typeArguments.firstOrNull { it.type?.classId?.asString()?.replace("/", ".") == ofType?.asString() } != null
     }
 }

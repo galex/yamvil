@@ -6,9 +6,14 @@ import androidx.compose.ui.Modifier
 import dev.galex.yamvil.compose.LaunchedActionEffect
 
 @Composable
+fun SomeScreen() {
+
+}
+
+@Composable
 fun DashboardScreen(
     uiState: DashboardUiState,
-    handleEvent: (DashboardUiEvent) -> Unit,
+    onEvent: (DashboardUiEvent) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LaunchedActionEffect(uiState) { action: DashboardUiAction ->

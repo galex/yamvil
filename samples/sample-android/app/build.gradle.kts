@@ -51,9 +51,8 @@ android {
 }
 
 composeCompiler {
-    enableStrongSkippingMode = true
-
-    reportsDestination = layout.buildDirectory.dir("compose_compiler")
+    //enableStrongSkippingMode = true
+    //reportsDestination = layout.buildDirectory.dir("compose_compiler")
     //stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
 }
 
@@ -80,8 +79,8 @@ dependencies {
 }
 
 yamvil {
-    level = YamvilLevel.Warning
-    screenSuffix = "MVIScreen" // Default value is "Screen"
-    uiStateParameterName = "state" // Default value is "uiState"
+    level = YamvilLevel.Error
+    screenSuffix = "Screen" // Default value is "Screen"
+    uiStateParameterName = "uiState" // Default value is "uiState"
     uiEventFunctionParameterMame = "onEvent" // Default value is "handleEvent"
 }
